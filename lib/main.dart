@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dadosrpg/Dates.dart';
 import 'package:dadosrpg/historico.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class DadosRpg extends StatefulWidget {
 class _DadosRpgState extends State<DadosRpg> {
   int _aRolar = 1;
   int _Debuff = 0;
+  List<Dates> listaDados = [];
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
@@ -32,7 +34,7 @@ class _DadosRpgState extends State<DadosRpg> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Historico(),
+                  builder: (context) => Historico(listaDados),
                 ),
               );
             },
@@ -394,8 +396,10 @@ class _DadosRpgState extends State<DadosRpg> {
           valorTotal = valorTotal + valorDado;
         }
         dadosRolados.trim();
+        var dados1 = dadosRolados.trim();
         _showDialog((valorTotal + Buff).toString(),
-            dadosRolados.replaceFirst(RegExp(r','), ""));
+            dados1 = dados1.replaceFirst(RegExp(r','), ""));
+        salvarDados(dados1, (valorTotal + Buff).toString());
         break;
 
       case "d6":
@@ -405,8 +409,10 @@ class _DadosRpgState extends State<DadosRpg> {
           valorTotal = valorTotal + valorDado;
         }
         dadosRolados.trim();
+        var dados1 = dadosRolados.trim();
         _showDialog((valorTotal + Buff).toString(),
-            dadosRolados.replaceFirst(RegExp(r','), ""));
+            dados1 = dados1.replaceFirst(RegExp(r','), ""));
+        salvarDados(dados1, (valorTotal + Buff).toString());
         break;
 
       case "d8":
@@ -416,8 +422,10 @@ class _DadosRpgState extends State<DadosRpg> {
           valorTotal = valorTotal + valorDado;
         }
         dadosRolados.trim();
+        var dados1 = dadosRolados.trim();
         _showDialog((valorTotal + Buff).toString(),
-            dadosRolados.replaceFirst(RegExp(r','), ""));
+            dados1 = dados1.replaceFirst(RegExp(r','), ""));
+        salvarDados(dados1, (valorTotal + Buff).toString());
         break;
 
       case "d10":
@@ -427,8 +435,10 @@ class _DadosRpgState extends State<DadosRpg> {
           valorTotal = valorTotal + valorDado;
         }
         dadosRolados.trim();
+        var dados1 = dadosRolados.trim();
         _showDialog((valorTotal + Buff).toString(),
-            dadosRolados.replaceFirst(RegExp(r','), ""));
+            dados1 = dados1.replaceFirst(RegExp(r','), ""));
+        salvarDados(dados1, (valorTotal + Buff).toString());
         break;
 
       case "d12":
@@ -438,8 +448,10 @@ class _DadosRpgState extends State<DadosRpg> {
           valorTotal = valorTotal + valorDado;
         }
         dadosRolados.trim();
+        var dados1 = dadosRolados.trim();
         _showDialog((valorTotal + Buff).toString(),
-            dadosRolados.replaceFirst(RegExp(r','), ""));
+            dados1 = dados1.replaceFirst(RegExp(r','), ""));
+        salvarDados(dados1, (valorTotal + Buff).toString());
         break;
 
       case "d20":
@@ -449,8 +461,10 @@ class _DadosRpgState extends State<DadosRpg> {
           valorTotal = valorTotal + valorDado;
         }
         dadosRolados.trim();
+        var dados1 = dadosRolados.trim();
         _showDialog((valorTotal + Buff).toString(),
-            dadosRolados.replaceFirst(RegExp(r','), ""));
+            dados1 = dados1.replaceFirst(RegExp(r','), ""));
+        salvarDados(dados1, (valorTotal + Buff).toString());
         break;
 
       case "d100":
@@ -459,9 +473,10 @@ class _DadosRpgState extends State<DadosRpg> {
           dadosRolados = "$dadosRolados , ${valorDado.toString()}";
           valorTotal = valorTotal + valorDado;
         }
-        dadosRolados.trim();
+        var dados1 = dadosRolados.trim();
         _showDialog((valorTotal + Buff).toString(),
-            dadosRolados.replaceFirst(RegExp(r','), ""));
+            dados1 = dados1.replaceFirst(RegExp(r','), ""));
+        salvarDados(dados1, (valorTotal + Buff).toString());
         break;
     }
   }
@@ -503,5 +518,7 @@ class _DadosRpgState extends State<DadosRpg> {
     );
   }
 
-  salvarDados(String dadosRolados, String valorTotal) {}
+  salvarDados(String dadosRolados, String valorTotal) {
+    listaDados.add(Dates(dadosRolados, valorTotal));
+  }
 }
