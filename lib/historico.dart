@@ -11,8 +11,6 @@ class Historico extends StatefulWidget {
 }
 
 class _HistoricoState extends State<Historico> {
-  List<String> titulo = [];
-  List<String> subtitulo = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,20 +22,19 @@ class _HistoricoState extends State<Historico> {
       body: ListView.builder(
         itemCount: widget.listaDados.length,
         itemBuilder: (context, index) {
+          Dates data = widget.listaDados[index];
           widget.listaDados.forEach((element) {
-            titulo.add(element.daDos);
-            subtitulo.add(element.valorTotal);
           });
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
               color: Color.fromRGBO(30, 30, 30, 1),
               borderOnForeground: true,
-              shadowColor: Colors.white,
+              shadowColor: Colors.red,
               elevation: 2,
               child: ListTile(
-                title: Text(subtitulo[index]),
-                subtitle: Text(titulo[index]),
+                title: Text(data.valorTotal),
+                subtitle: Text(data.daDos),
                 textColor: Colors.white,
               ),
             ),
